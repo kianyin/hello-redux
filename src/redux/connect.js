@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const connect = (WrappedComponent) => {
+const connect = (mapStateToProps)=>(WrappedComponent) => {
   class Connect extends Component {
     static contextTypes = {
       store: PropTypes.object
@@ -20,7 +20,7 @@ const connect = (WrappedComponent) => {
 
     _updateProps () {
       const { store } = this.context
-      let stateProps = store.getState()
+      let stateProps = mapStateToProps(store.getState())
       stateProps.dispatch=store.dispatch
       this.setState({
         allProps: { // 整合普通的 props 和从 state 生成的 props

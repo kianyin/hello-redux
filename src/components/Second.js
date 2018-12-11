@@ -28,4 +28,4 @@ class Second extends Component {
     }
 }
 
-export default connect(Second);
+export default connect((state)=> ({second:state.second}))(Second);

@@ -28,5 +28,5 @@ class Third extends Component {
     }
 }
 
-export default connect(Third);
+export default connect((state)=> ({third:state.third}))(Third);
 

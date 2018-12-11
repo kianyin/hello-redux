@@ -26,4 +26,4 @@ class Forth extends Component {
     }
 }
 
-export default connect(Forth);
+export default connect((state)=> ({forth:state.forth}))(Forth);
