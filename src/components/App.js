@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Second from './Second'
 import { store } from '../store';
+import  connect  from '../redux/connect';
 
 class App extends Component {
   constructor() {

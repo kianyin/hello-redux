@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import  connect  from '../redux/connect';
+
 class Forth extends Component {
     constructor(){
         super()
         this.state={}
     }
-    static contextTypes = {
-        store: PropTypes.object
-    }
-    componentDidMount() {
-        const { store } = this.context
-        this._updateState()
-        store.subscribe(() => this._updateState())
-    }
-    _updateState() {
-        const { store } = this.context;
-        const state = store.getState();
-        this.setState(state)
-    }
     plus(){
-        const { store } = this.context;
-        store.dispatch({
+        this.props.dispatch({
             type: 'AddHunreds',
         })
     }
@@ -28,7 +15,7 @@ class Forth extends Component {
     render() {
         return (
             <div>
-                forth:{this.state.forth}
+                forth:{this.props.forth}
                 <button
                     onClick={this.plus.bind(this)}
                 >
@@ -39,4 +26,4 @@ class Forth extends Component {
     }
 }
 
-export default Forth;
+export default connect(Forth);

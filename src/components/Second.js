@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Third from './Third'
+import  connect  from '../redux/connect';
 
 class Second extends Component {
     constructor(){
         super()
         this.state={}
     }
-    static contextTypes = {
-        store: PropTypes.object
-    }
-    componentDidMount() {
-        const { store } = this.context
-        this._updateState()
-        store.subscribe(() => this._updateState())
-    }
-    _updateState() {
-        const { store } = this.context;
-        const state = store.getState();
-        this.setState(state)
-    }
     plus(){
-        const { store } = this.context;
-        store.dispatch({
+        this.props.dispatch({
             type: 'AddOne',
         })
     }
@@ -30,7 +16,7 @@ class Second extends Component {
     render() {
         return (
             <div>
-                second:{this.state.second}
+                second:{this.props.second}
                 <button
                     onClick={this.plus.bind(this)}
                 >
@@ -42,4 +28,4 @@ class Second extends Component {
     }
 }
 
-export default Second;
+export default connect(Second);
