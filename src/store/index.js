@@ -1,3 +1,9 @@
+let initState={
+    second: 1,
+    third: 10,
+    forth: 100
+}
+
 function createStore(reducer) {
     let state = null; //初始化state
     let listeners = []; //监听变化的回调函数队列
@@ -14,11 +20,7 @@ function createStore(reducer) {
 // 改变状态的规则函数
 function reducer(state, action) {
     if (!state) {
-        state = {
-            second: 1,
-            third: 10,
-            forth: 100
-        }
+        state =initState
     }
     switch (action.type) {
         case 'AddOne':
