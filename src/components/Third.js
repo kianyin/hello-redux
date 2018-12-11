@@ -13,6 +13,7 @@ class Third extends Component {
     componentDidMount() {
         const { store } = this.context
         this._updateState()
+        store.subscribe(() => this._updateState())
     }
     _updateState() {
         const { store } = this.context;

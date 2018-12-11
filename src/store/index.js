@@ -27,12 +27,12 @@ function reducer(state, action) {
             state.forth++;
             break;
         case 'AddTen':
-            state.number=state.number+10;
+            state.second=state.second+10;
             state.third=state.third+10;
             state.forth=state.forth+10;
             break;
         case 'AddHunreds':
-            state.number=state.number+100;
+            state.second=state.second+100;
             state.third=state.third+100;
             state.forth=state.forth+100;
             break;
