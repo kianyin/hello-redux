@@ -19,11 +19,22 @@ class Third extends Component {
         const state = store.getState();
         this.setState(state)
     }
+    plus(){
+        const { store } = this.context;
+        store.dispatch({
+            type: 'AddTen',
+        })
+    }
 
     render() {
         return (
             <div>
                 third:{this.state.third}
+                <button
+                    onClick={this.plus.bind(this)}
+                >
+                    +10
+                </button>
                 <Forth />
             </div>
         );

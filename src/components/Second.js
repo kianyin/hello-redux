@@ -19,11 +19,22 @@ class Second extends Component {
         const state = store.getState();
         this.setState(state)
     }
+    plus(){
+        const { store } = this.context;
+        store.dispatch({
+            type: 'AddOne',
+        })
+    }
 
     render() {
         return (
             <div>
                 second:{this.state.second}
+                <button
+                    onClick={this.plus.bind(this)}
+                >
+                    +1
+                </button>
                 <Third/>
             </div>
         );

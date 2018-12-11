@@ -17,11 +17,22 @@ class Forth extends Component {
         const state = store.getState();
         this.setState(state)
     }
+    plus(){
+        const { store } = this.context;
+        store.dispatch({
+            type: 'AddHunreds',
+        })
+    }
 
     render() {
         return (
             <div>
                 forth:{this.state.forth}
+                <button
+                    onClick={this.plus.bind(this)}
+                >
+                    +100
+                </button>
             </div>
         );
     }
