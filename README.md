@@ -15,11 +15,11 @@
 
 ## Step 3 用react的方式多层传参
 
-示意图 
+![传统的props传参](https://gitlab.zeaho.com/frontend/hello-redux/raw/master/src/assets/1.png)
 
 ## Step 4 使用context
 
-示意图
+![context](https://gitlab.zeaho.com/frontend/hello-redux/raw/master/src/assets/1.png)
 
 我们已经不用一层一层用```props```传参啦
 
