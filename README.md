@@ -1,44 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Step 1 构建create-react-app项目
 
-In the project directory, you can run:
+> create-react-app hello-redux
 
-### `npm start`
+> cd hello-redux
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> cnpm i
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+> cnpm start
 
-### `npm test`
+## Step 2 调整项目结构
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+视图组件放到```components```目录下
 
-### `npm run build`
+## Step 3 用react的方式多层传参
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+示意图 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Step 4 使用context
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+示意图
 
-### `npm run eject`
+我们已经不用一层一层用```props```传参啦
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+问题: ```context```的更新还是较为复杂, 且不可控
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step 5 使用store
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+状态存到store里, store接收一个参数```reducer``` 并向外暴露三个方法 ```getState```, ```subscribe```, ```dispatch```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```reducer``` 可以视为改变状态的方法集
 
-## Learn More
+```getState``` 用于对外暴露 ```state```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```dispatch``` 用于改变 ```state```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```subscribe``` 用于订阅 ```dispatch``` 后的回调
+
+现在, 我们把 ```store``` 直接传入 ```context```
+
+## Step 6 使用dispatch
+
+这里就有点像 ```redux``` 了, 但是似乎执行 ```dispatch``` 之后没什么作用
+
+## Step 7 添加subscribe
+
+这下就知道视图是怎么跟随 ```store``` 的改变而更新的啦
+
+问题: 每个组件里都有大量重复逻辑
+
+## Step 8 构建高阶组件Connect
+
+高阶函数是对函数的封装 => 函数返回一个函数
+
+高阶组件就是对组件的封装 => 函数返回一个组件
+
+```Connect``` 接收视图组件, 返回经过加工之后的视图组件
+
+这样帮助我们节省了很多重复代码
+
+而且视图组件可以从 ```this.props``` 里面获得 ```state``` , 十分的像 ```redux```
+
+问题: 所有的组件都可以获得所有的```state```值, 有些浪费
+
+## Step 9 mapStateToProps
+
+相当于给 ```Connect``` 多加了一个参数, 用来给组件传递指定的 ```state```
