@@ -1,4 +1,3 @@
-
 ## Step 1 构建create-react-app项目
 
 > create-react-app hello-redux
@@ -19,7 +18,7 @@
 
 ## Step 4 使用context
 
-![context](https://gitlab.zeaho.com/frontend/hello-redux/raw/master/src/assets/1.png)
+![context](https://gitlab.zeaho.com/frontend/hello-redux/raw/master/src/assets/2.png)
 
 我们已经不用一层一层用```props```传参啦
 
